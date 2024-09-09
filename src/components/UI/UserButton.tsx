@@ -1,28 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { FaRegUser } from "react-icons/fa";
+import { Spin } from "antd";
 
-import userImage from "../../../public/logo.png";
 import { getCookie } from "@/lib/helpers";
 import { useFetchUser } from "@/hooks/useFtechUser";
-import { Spin } from "antd";
+import { User } from "@/types";
 
 function UserButton() {
   const router = useRouter();
-  const userId = getCookie("user").id;
-  const { isLoading, user } = useFetchUser(userId);
+  const userId = getCookie("user");
+
+  const { isLoading, user }: { isLoading: boolean; user: User } =
+    useFetchUser(userId);
 
   function handleUserNavigation() {
-    router.push(`/users/user/${user.id}`);
+    router.push(`/profile/${userId}`);
   }
   if (isLoading) return <Spin />;
   return (
     <div className="flex flex-row items-center gap-4">
       <div className="flex flex-row items-center gap-2">
-        <Image src={userImage} alt="username" width={50} height={50} />
-        <p>{user.email}</p>
+        <Image
+          src={user.imageUrl}
+          alt={user.fullName}
+          width={50}
+          height={50}
+          className="rounded-full aspect-square"
+        />
+        <p>{user.fullName}</p>
       </div>
       <button>
         <FaRegUser onClick={handleUserNavigation} />

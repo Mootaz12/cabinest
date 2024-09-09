@@ -7,7 +7,7 @@ export function useCreateUser() {
   const { mutate, isPending } = useMutation({
     mutationKey: ["users"],
     mutationFn: async (data: CreateUserSchemaType) => {
-      const res = await fetch("http://localhost:3000/api/users", {
+      const res = await fetch("http://localhost:3001/api/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,15 +1,12 @@
 import Cookies from "js-cookie";
 
-export function setCookie(cookieName: string, value: any): null {
-  Cookies.set(`${cookieName}`, value);
-  return null;
+export function setCookie(cookieName: string, value: any) {
+  Cookies.set(cookieName, value);
 }
 export function getCookie(cookieName: string): any {
-  const cookieValue = Cookies.get(`${cookieName}`);
-  return cookieValue ? JSON.parse(cookieValue) : null;
+  return Cookies.get(cookieName);
 }
 
-export function removeCookie(cookieName: string): null {
-  Cookies.remove(`${cookieName}`);
-  return null;
+export function removeCookie(cookieName: string) {
+  Cookies.remove(cookieName);
 }

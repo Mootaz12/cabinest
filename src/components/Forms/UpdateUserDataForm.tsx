@@ -1,9 +1,8 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Spin } from "antd";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CldUploadWidget } from "next-cloudinary";
 
 import CancelFormButton from "../UI/wrappers/CancelFormButton";
 import FormButtonWrapper from "../UI/wrappers/FormButtonWrapper";
@@ -14,11 +13,12 @@ import { UpdateUserSchemaType } from "@/types";
 import { UpdateUserSchema } from "@/schemas";
 import { useFetchUser } from "@/hooks/useFtechUser";
 import { useUpdateUser } from "@/hooks/useUpdateUser";
+import ImagePreview from "../UI/ImagePreview";
 
 function UpdateUserDataForm({ userId }: { userId: string }) {
   const { isLoading, user } = useFetchUser(userId);
   const { isPending, mutate } = useUpdateUser(userId);
-
+  const [imagePreview, setImagePreview] = useState<string>("");
   const {
     setFocus,
     handleSubmit,
@@ -29,12 +29,15 @@ function UpdateUserDataForm({ userId }: { userId: string }) {
     resolver: zodResolver(UpdateUserSchema),
   });
   function onSubmit(data: UpdateUserSchemaType) {
+    console.log(data);
+
     const formData = new FormData();
-    formData.append("name", data.fullName);
+    formData.append("fullName", data.fullName);
     formData.append("email", data.email);
-    formData.append("image", data.image);
+    formData.append("file", data.image[0]);
     formData.append("password", data.password);
-    mutate(data as unknown as FormData);
+
+    mutate(formData);
   }
   useEffect(() => {
     user &&
@@ -46,6 +49,13 @@ function UpdateUserDataForm({ userId }: { userId: string }) {
   useEffect(() => {
     setFocus("fullName");
   }, [setFocus]);
+  function handleImageChange(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (file) {
+      const imagePreviewUrl = URL.createObjectURL(file);
+      setImagePreview(imagePreviewUrl);
+    }
+  }
 
   if (isLoading) return <Spin />;
   return (
@@ -82,38 +92,15 @@ function UpdateUserDataForm({ userId }: { userId: string }) {
       <FormChampWrapper>
         <FormInputWrapper>
           <label htmlFor="image">Avatar image</label>
-          <input type="file" {...register("image")} id="image" />
-          {/* <CldUploadWidget
-            options={{ sources: ["local"] }}
-            uploadPreset="Cabinest"
-            signatureEndpoint={"http://localhost:3000/api/upload-image"}
-            onSuccess={async (result, { widget }) => {
-              console.log("gg");
-
-              const paramsToSign = {
-                timestamp: Math.floor(Date.now() / 1000),
-                source: "uw",
-              };
-              const response = await fetch("/api/upload-image", {
-                method: "POST",
-                body: JSON.stringify({ paramsToSign }),
-              });
-              const { signature } = await response.json();
-              console.log(signature);
-            }}
-          >
-            {({ open }) => {
-              return (
-                <button
-                  className="text-white bg-blue hover:bg-indigo-700 p-3 rounded-md "
-                  onClick={() => open()}
-                >
-                  Upload image
-                </button>
-              );
-            }}
-          </CldUploadWidget> */}
+          <input
+            type="file"
+            {...register("image")}
+            id="image"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
         </FormInputWrapper>
+        <ImagePreview imagePreview={imagePreview} />
       </FormChampWrapper>
       <FormChampWrapper>
         <FormInputWrapper>
@@ -150,7 +137,7 @@ function UpdateUserDataForm({ userId }: { userId: string }) {
           className="text-white bg-blue hover:bg-indigo-700 p-3 rounded-md "
           disabled={isPending}
         >
-          {isPending ? "Updateing account" : "Update account"}
+          {isPending ? "Updating account..." : "Update account"}
         </button>
       </FormButtonWrapper>
     </form>

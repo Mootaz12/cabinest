@@ -12,6 +12,7 @@ export type User = {
   fullName: string;
   email: string;
   password: string;
+  imageUrl: string;
 };
 export type SignInSchemaType = z.infer<typeof SignInSchema>;
 export type CreateUserSchemaType = z.infer<typeof CreateUserSchema>;
