@@ -5,11 +5,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { CreateUserSchemaType } from "@/types";
 import { CreateUserSchema } from "@/schemas";
-import CancelFormButton from "../UI/wrappers/CancelFormButton";
-import FormChampWrapper from "../UI/wrappers/FormChampWrapper";
-import FormButtonWrapper from "../UI/wrappers/FormButtonWrapper";
-import FormInputWrapper from "../UI/wrappers/FormInputWrapper";
-import FormErrorMessage from "../UI/FormErrorMessage";
+import CancelFormButton from "../form/CancelFormButton";
+import FormChampWrapper from "../form/FormChampWrapper";
+import FormButtonWrapper from "../form/FormButtonWrapper";
+import FormInputWrapper from "../form/FormInputWrapper";
+import FormErrorMessage from "../form/FormErrorMessage";
 import { useCreateUser } from "@/hooks/useCreateUser";
 
 function CreateUserForm() {

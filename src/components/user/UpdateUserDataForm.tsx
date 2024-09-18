@@ -4,11 +4,11 @@ import { Spin } from "antd";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import CancelFormButton from "../UI/wrappers/CancelFormButton";
-import FormButtonWrapper from "../UI/wrappers/FormButtonWrapper";
-import FormInputWrapper from "../UI/wrappers/FormInputWrapper";
-import FormChampWrapper from "../UI/wrappers/FormChampWrapper";
-import FormErrorMessage from "../UI/FormErrorMessage";
+import CancelFormButton from "../form/CancelFormButton";
+import FormButtonWrapper from "../form/FormButtonWrapper";
+import FormInputWrapper from "../form/FormInputWrapper";
+import FormChampWrapper from "../form/FormChampWrapper";
+import FormErrorMessage from "../form/FormErrorMessage";
 import { UpdateUserSchemaType } from "@/types";
 import { UpdateUserSchema } from "@/schemas";
 import { useFetchUser } from "@/hooks/useFtechUser";

@@ -5,7 +5,7 @@ import { message } from "antd";
 
 export function useCreateUser() {
   const { mutate, isPending } = useMutation({
-    mutationKey: ["users"],
+    mutationKey: ["user"],
     mutationFn: async (data: CreateUserSchemaType) => {
       const res = await fetch("http://localhost:3001/api/user", {
         method: "POST",

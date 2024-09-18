@@ -1,7 +1,7 @@
 import React from "react";
 
-import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
-import SignInForm from "@/components/Forms/SignInForm";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import SignInForm from "@/components/auth/SignInForm";
 import Logo from "@/components/UI/Logo";
 
 function SignInPage() {

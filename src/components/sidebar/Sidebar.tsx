@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "./Logo";
+import Logo from "../UI/Logo";
 import SidebarLink from "./SidebarLink";
 import { sidebarLinks } from "@/constants/links";
 

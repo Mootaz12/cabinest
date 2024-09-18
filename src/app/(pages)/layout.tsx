@@ -1,5 +1,5 @@
 import Header from "@/components/UI/Header";
-import Sidebar from "@/components/UI/Sidebar";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 export default function PagesLayout({
   children,

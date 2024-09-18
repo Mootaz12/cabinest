@@ -23,13 +23,15 @@ function UserButton() {
   return (
     <div className="flex flex-row items-center gap-4">
       <div className="flex flex-row items-center gap-2">
-        <Image
-          src={user.imageUrl}
-          alt={user.fullName}
-          width={50}
-          height={50}
-          className="rounded-full aspect-square"
-        />
+        {user.imageUrl && (
+          <Image
+            src={user.imageUrl}
+            alt={user.fullName}
+            width={50}
+            height={50}
+            className="rounded-full aspect-square"
+          />
+        )}
         <p>{user.fullName}</p>
       </div>
       <button>

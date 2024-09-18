@@ -1,6 +1,6 @@
 import React from "react";
-import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
-import UpdateUserDataForm from "@/components/Forms/UpdateUserDataForm";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import UpdateUserDataForm from "@/components/user/UpdateUserDataForm";
 
 function UserPage({ params }: { params: { userId: string } }) {
   const { userId } = params;

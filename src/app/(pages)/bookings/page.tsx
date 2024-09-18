@@ -1,7 +1,7 @@
 import React from "react";
 
 function BookingPage() {
-  return <main>BookingPage</main>;
+  return <>BookingPage</>;
 }
 
 export default BookingPage;

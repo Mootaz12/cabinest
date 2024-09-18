@@ -1,5 +1,5 @@
-import CreateUserForm from "@/components/Forms/CreateUserForm";
-import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
+import CreateUserForm from "@/components/user/CreateUserForm";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import React from "react";
 
 function UsersPage() {

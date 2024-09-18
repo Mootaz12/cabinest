@@ -2,8 +2,8 @@
 import React from "react";
 // import ThemeButton from "./ThemeButton";
 import LogoutButton from "./LogoutButton";
-import UserButton from "./UserButton";
-import ReactQueryProvider from "../providers/ReactQueryProvider";
+import UserButton from "../user/UserButton";
+import ReactQueryProvider from "../../providers/ReactQueryProvider";
 
 function Header() {
   return (

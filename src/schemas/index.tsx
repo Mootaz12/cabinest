@@ -31,3 +31,13 @@ export const UpdateUserSchema = z
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
+
+export const CreateCabinSchema = z.object({
+  cabinName: z.string().min(1, "cabin name must be provided"),
+  maxCapacity: z.string().min(1, "max capacity must be greater than zero"),
+  regularPrice: z.string().min(1, "regular price must be greater than zero"),
+  discount: z.string().min(1, "discount must be greater than zero ").optional(),
+  description: z.string().min(1, "description must be provided "),
+  image: z.any(),
+});
+export const UpdateCabinSchema = CreateCabinSchema;
