@@ -33,6 +33,7 @@ export type Cabin = {
 export type Booking = {
   booking: string;
 };
+export type CabinFilterType = "all" | "no-discount" | "with-discount";
 export type SignInSchemaType = z.infer<typeof SignInSchema>;
 export type CreateUserSchemaType = z.infer<typeof CreateUserSchema>;
 export type UpdateUserSchemaType = z.infer<typeof UpdateUserSchema>;

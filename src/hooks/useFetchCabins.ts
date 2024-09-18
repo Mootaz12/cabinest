@@ -5,7 +5,7 @@ export function useFetchCabins() {
   const { isLoading, data } = useQuery({
     queryKey: ["cabins"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:3001/api/cabin", {
+      const res = await fetch(`http://localhost:3001/api/cabin`, {
         method: "GET",
       });
       if (!res.ok) {
