@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef } from "react";
-
 import CreateCabinForm from "./CreateCabinForm";
 
 function CreateCabin() {
@@ -10,12 +9,16 @@ function CreateCabin() {
   const openDialog = () => {
     if (dialogRef.current) {
       dialogRef.current.showModal();
+      // Disable scrolling on the body
+      document.body.style.overflow = "hidden";
     }
   };
 
   const closeDialog = () => {
     if (dialogRef.current) {
       dialogRef.current.close();
+      // Re-enable scrolling on the body
+      document.body.style.overflow = "";
     }
   };
 
@@ -31,7 +34,7 @@ function CreateCabin() {
 
       <dialog
         ref={dialogRef}
-        className="relative rounded-lg backdrop:bg-transparent w-1/2"
+        className="relative rounded-lg backdrop-blur-2xl w-1/2"
       >
         <button
           onClick={closeDialog}
